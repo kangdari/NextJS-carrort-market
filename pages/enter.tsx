@@ -1,9 +1,7 @@
 import { useState } from 'react';
-
-function cls(...classnames: string[]) {
-  console.log(classnames);
-  return classnames.join(' ');
-}
+import CustomButton from '../components/Button/CustomButton';
+import Input from '../components/input';
+import { cls } from '../libs/utils';
 
 export default function Enter() {
   const [method, setMethod] = useState<'email' | 'phone'>('email');
@@ -41,37 +39,21 @@ export default function Enter() {
           </div>
         </div>
         <form className='flex flex-col mt-8'>
-          <label htmlFor='input' className='text-sm font-medium text-gray-700'>
-            {method === 'email' ? 'Email address' : null}
-            {method === 'phone' ? 'Phone number' : null}
-          </label>
-          <div className='mt-1'>
-            {method === 'email' ? (
-              <input
-                id='input'
-                type='email'
-                className='appearance-none w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
-                required
-              />
-            ) : null}
-            {method === 'phone' ? (
-              <div className='flex rounded-md shadow-sm'>
-                <span className='flex items-center justify-center px-3 rounded-l-md border-r-0 border-gray-300 bg-gray-50 text-gray-500 select-none'>
-                  +82
-                </span>
-                <input
-                  id='input'
-                  type='number'
-                  className='appearance-none w-full px-3 py-2 border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
-                  required
-                />
-              </div>
-            ) : null}
-          </div>
-          <button className='mt-6 text-white bg-orange-500 hover:bg-orange-600 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 focus:outline-none '>
-            {method === 'email' ? 'Get login link' : null}
-            {method === 'phone' ? 'Get one-time password' : null}
-          </button>
+          {method === 'email' && (
+            <Input name='email' type='email' label='Email address' />
+          )}
+
+          {method === 'phone' && (
+            <Input name='email' type='phone' label='Phone number' />
+          )}
+
+          <CustomButton
+            title={
+              method === 'email' ? 'Get login link' : 'Get one-time password'
+            }
+            size='small'
+            className='mt-6'
+          />
         </form>
         <div className='mt-8'>
           <div className='relative'>

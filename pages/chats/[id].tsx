@@ -1,98 +1,32 @@
 import type { NextPage } from 'next';
+import ChatLog from '../../components/ChatLog';
 
 const ChatDetail: NextPage = () => {
   return (
     <div className='py-10 px-4 space-y-4'>
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>Hi how much are you selling them for?</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog chat='Hi how much are you selling them for?' />
 
-      <div className='flex flex-row-reverse items-start space-x-2 space-x-reverse'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>I want ￦20,000</p>
-        </div>
-      </div>
-
-      <div className='flex items-start space-x-2'>
-        <div className='w-8 h-8 rounded-full bg-slate-400' />
-        <div className='w-1/2 text-sm text-gray-700 p-2 rounded-md border border-gray-00'>
-          <p>미쳤어</p>
-        </div>
-      </div>
+      <ChatLog direction='right' chat='Hi how much are you selling them for?' />
 
       <div className='fixed w-full mx-auto max-w-md bottom-2 inset-x-0'>
         <div className='flex items-center relative'>
