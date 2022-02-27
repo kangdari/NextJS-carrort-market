@@ -21,6 +21,8 @@ export default function Layout({
     route.back();
   };
 
+  console.log(route.pathname);
+
   return (
     <div>
       <div
@@ -53,7 +55,12 @@ export default function Layout({
       {hasTabBar && (
         <nav className=' bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs'>
           <Link href='/'>
-            <a className='cursor-pointer flex flex-col items-center space-y-2'>
+            <a
+              className={cls(
+                'cursor-pointer flex flex-col items-center space-y-2',
+                route.pathname === '/' ? 'text-orange-500' : ''
+              )}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -73,7 +80,13 @@ export default function Layout({
           </Link>
 
           <Link href='/community'>
-            <a className='cursor-pointer flex flex-col items-center space-y-2'>
+            <a
+              className={cls(
+                'cursor-pointer flex flex-col items-center space-y-2',
+                route.pathname === '/community' ? 'text-orange-500' : ''
+              )}
+            >
+              {' '}
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -93,7 +106,13 @@ export default function Layout({
           </Link>
 
           <Link href='/chats'>
-            <a className='cursor-pointer flex flex-col items-center space-y-2'>
+            <a
+              className={cls(
+                'cursor-pointer flex flex-col items-center space-y-2',
+                route.pathname === '/chats' ? 'text-orange-500' : ''
+              )}
+            >
+              {' '}
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -113,7 +132,12 @@ export default function Layout({
           </Link>
 
           <Link href='/live'>
-            <a className='cursor-pointer flex flex-col items-center space-y-2'>
+            <a
+              className={cls(
+                'cursor-pointer flex flex-col items-center space-y-2',
+                route.pathname === '/live' ? 'text-orange-500' : ''
+              )}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -139,7 +163,13 @@ export default function Layout({
           </Link>
 
           <Link href='/profile'>
-            <a className='cursor-pointer flex flex-col items-center space-y-2'>
+            <a
+              className={cls(
+                'cursor-pointer flex flex-col items-center space-y-2',
+                route.pathname === '/profile' ? 'text-orange-500' : ''
+              )}
+            >
+              {' '}
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
