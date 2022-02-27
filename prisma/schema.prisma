@@ -1,0 +1,24 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+model User {
+  id     Int     @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
+  phone  Int?    @unique // optional, 고유한 옵션 
+  email  String? @unique
+  name   String
+  avatar String?
+  createdAt DateTime @default(now()) // 기본 값은 현재 시간으로 설정
+  updatedAt DateTime @updatedAt // User가 업데이트될 때 
+}
+
