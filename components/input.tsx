@@ -1,14 +1,23 @@
 import React from 'react';
-import assets from '../assets/icon';
+import type { UseFormRegisterReturn } from 'react-hook-form';
 
 interface InputProps {
   name: string;
   label: string;
   type?: 'text' | 'phone' | 'price' | 'email';
+  register: UseFormRegisterReturn;
+  required?: boolean;
   [key: string]: any;
 }
 
-const Input = ({ name, label, type = 'text', ...rest }: InputProps) => {
+const Input = ({
+  name,
+  label,
+  type = 'text',
+  register,
+  required,
+  ...rest
+}: InputProps) => {
   return (
     <div>
       <label
@@ -21,6 +30,9 @@ const Input = ({ name, label, type = 'text', ...rest }: InputProps) => {
         <input
           id={name}
           className='appearance-none w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
+          type={type}
+          required={required}
+          {...register}
           {...rest}
         />
       )}
@@ -30,6 +42,8 @@ const Input = ({ name, label, type = 'text', ...rest }: InputProps) => {
           id={name}
           type={type}
           className='appearance-none w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
+          required={required}
+          {...register}
           {...rest}
         />
       )}
@@ -43,6 +57,8 @@ const Input = ({ name, label, type = 'text', ...rest }: InputProps) => {
             id={name}
             type={type}
             className='appearance-none w-full px-3 py-2 border border-gray-300 rounded-md rounded-l-none shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
+            required={required}
+            {...register}
             {...rest}
           />
         </div>
@@ -55,8 +71,10 @@ const Input = ({ name, label, type = 'text', ...rest }: InputProps) => {
           </div>
           <input
             id={name}
-            type='text'
+            type={type}
             className='pl-7 appearance-none w-full px-3 py-2 border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-orange-500 focus:border-orange-500'
+            required={required}
+            {...register}
             {...rest}
           />
           <div className='absolute right-0 pr-3 flex items-center pointer-events-none '>

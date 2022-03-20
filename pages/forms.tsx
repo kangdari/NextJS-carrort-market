@@ -1,19 +1,22 @@
-import {FieldError, useForm} from 'react-hook-form';
+import { FieldError, useForm } from 'react-hook-form';
 
 interface LoginForm {
-  username: string,
-  email: string,
-  password: number,
+  username: string;
+  email: string;
+  password: number;
   errors?: string;
 }
 
 export default function forms() {
-  const {register, handleSubmit, formState: {errors},
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
     setError,
-    reset
+    reset,
   } = useForm<LoginForm>({
     // mode: "onChange"
-    mode: "onBlur"
+    mode: 'onBlur',
   });
   // console.log(errors);
 
@@ -22,42 +25,49 @@ export default function forms() {
     // setError("errors", { message: "backend error"})
     reset();
   };
-  const onInValid = (err: FieldError) => {
-
-  };
+  const onInValid = (err: FieldError) => {};
 
   return (
     <form onSubmit={handleSubmit(onValid, onInValid)}>
-      <input {...register('username', {
-        required: 'username is required',
-        minLength: {
-          message: 'username is should be longer then 5 chars',
-          value: 5
-        },
-      })} type="text" placeholder="username"/>
+      <input
+        {...register('username', {
+          required: 'username is required',
+          minLength: {
+            message: 'username is should be longer then 5 chars',
+            value: 5,
+          },
+        })}
+        type='text'
+        placeholder='username'
+      />
       {errors.username?.message}
 
-      <input {...register('email', {
-        required: 'email is required',
-        validate: {
-          notGmail: (value) => !value.includes('gmail.com') || 'gmail is not allowed'
-        }
-      })} type="text" 
-        placeholder="email"
-        className={`${Boolean(errors.email) ? "border-red-500" : ""}`} 
+      <input
+        {...register('email', {
+          required: 'email is required',
+          validate: {
+            notGmail: (value) =>
+              !value.includes('gmail.com') || 'gmail is not allowed',
+          },
+        })}
+        type='text'
+        placeholder='email'
+        className={`${Boolean(errors.email) ? 'border-red-500' : ''}`}
       />
       {errors.email?.message}
 
-      <input {...register('password', {
-        required: 'password is required',
-      })} type="text" placeholder="password"/>
+      <input
+        {...register('password', {
+          required: 'password is required',
+        })}
+        type='text'
+        placeholder='password'
+      />
       {errors.password?.message}
 
       {errors.errors?.message}
 
-
-      <input type="submit" value="create account"/>
+      <input type='submit' value='create account' />
     </form>
   );
-
 }

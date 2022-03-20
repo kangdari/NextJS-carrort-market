@@ -1,12 +1,37 @@
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import CustomButton from '../components/Button/CustomButton';
 import Input from '../components/input';
-import { cls } from '../libs/utils';
+import useMutation from '../libs/client/useMutation';
+import { cls } from '../libs/client/utils';
+
+interface EnterForm {
+  email?: string;
+  phone?: string;
+}
 
 export default function Enter() {
+  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const { register, reset, handleSubmit } = useForm();
   const [method, setMethod] = useState<'email' | 'phone'>('email');
-  const onEmailClick = () => setMethod('email');
-  const onPhoneClick = () => setMethod('phone');
+  const onEmailClick = () => {
+    reset();
+    setMethod('email');
+  };
+  const onPhoneClick = () => {
+    reset();
+    setMethod('phone');
+  };
+
+  const onValid = async (validForm: EnterForm) => {
+    enter(validForm);
+  };
+
+  console.log(`loading: ${loading}`);
+  console.log(data);
+  console.log(error);
+
   return (
     <div className='mt-16 px-4'>
       <h3 className='text-3xl font-bold text-center'>Enter to Carrot</h3>
@@ -38,18 +63,38 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form className='flex flex-col mt-8'>
+        <form onSubmit={handleSubmit(onValid)} className='flex flex-col mt-8'>
           {method === 'email' && (
-            <Input name='email' type='email' label='Email address' />
+            <Input
+              register={register('email', {
+                // required: true,
+              })}
+              name='email'
+              type='email'
+              label='Email address'
+              required
+            />
           )}
 
           {method === 'phone' && (
-            <Input name='email' type='phone' label='Phone number' />
+            <Input
+              register={register('phone', {
+                // required: true,
+              })}
+              name='phone'
+              type='phone'
+              label='Phone number'
+              required
+            />
           )}
 
           <CustomButton
             title={
-              method === 'email' ? 'Get login link' : 'Get one-time password'
+              submitLoading
+                ? 'loading...'
+                : method === 'email'
+                ? 'Get login link'
+                : 'Get one-time password'
             }
             size='small'
             className='mt-6'
