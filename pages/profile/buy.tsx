@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { LayoutAnimation } from 'react-native';
-import Layout from '../../components/layout';
-import ProfileListItem from '../../components/ProfileListItem';
+import Layout from '@components/layout';
+import ProfileListItem from '@components/ProfileListItem';
 
 const Buy: NextPage = () => {
   return (

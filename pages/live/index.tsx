@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
-import Layout from '../../components/layout';
-import LiveListItem from '../../components/LiveListItem';
+import Layout from '@components/layout';
+import LiveListItem from '@components/LiveListItem';
 
 const Live: NextPage = () => {
   return (

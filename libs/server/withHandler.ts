@@ -5,7 +5,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 // 함수를 반환하는 함수
 export default function withHandler(
   method: 'GET' | 'POST' | 'DELETE',
-  fn: (req: NextApiRequest, res: NextApiResponse) => Promise<void>
+  fn: (req: NextApiRequest, res: NextApiResponse) => void
 ) {
   return async function (req: NextApiRequest, res: NextApiResponse) {
     if (req.method !== method) {

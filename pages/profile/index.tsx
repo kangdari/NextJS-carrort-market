@@ -1,7 +1,7 @@
 import { assert } from 'console';
 import type { NextPage } from 'next';
-import ProfileButton from '../../components/Button/ProfileButton';
-import Layout from '../../components/layout';
+import ProfileButton from '@components/Button/ProfileButton';
+import Layout from '@components/layout';
 import assets from '../../assets/icon';
 
 const Profile: NextPage = () => {

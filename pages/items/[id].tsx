@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import CustomButton from '../../components/Button/CustomButton';
-import IconButton from '../../components/Button/IconButton';
-import Layout from '../../components/layout';
-import SimilarItem from '../../components/SimilarItem';
+import CustomButton from '@components/Button/CustomButton';
+import IconButton from '@components/Button/IconButton';
+import Layout from '@components/layout';
+import SimilarItem from '@components/SimilarItem';
 
 const ItemDetail: NextPage = () => {
   return (

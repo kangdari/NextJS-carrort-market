@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { LayoutAnimation } from 'react-native';
-import ChatListItem from '../../components/ChatListItem';
-import Layout from '../../components/layout';
+import ChatListItem from '@components/ChatListItem';
+import Layout from '@components/layout';
 
 const Chats: NextPage = () => {
   return (

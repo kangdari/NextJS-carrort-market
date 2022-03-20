@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { json } from 'stream/consumers';
-import client from '../../../libs/server/client';
-import withHandler from '../../../libs/server/withHandler';
+import client from '@libs/server/client';
+import withHandler from '@libs/server/withHandler';
 
 async function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log(req.body);

@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import ChatLog from '../../components/ChatLog';
+import ChatLog from '@components/ChatLog';
 
 const ChatDetail: NextPage = () => {
   return (
