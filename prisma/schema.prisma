@@ -13,12 +13,22 @@ datasource db {
 }
 
 model User {
-  id     Int     @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
-  phone  Int?    @unique // optional, 고유한 옵션 
-  email  String? @unique
-  name   String
-  avatar String?
+  id        Int     @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
+  phone     Int?    @unique // optional, 고유한 옵션 
+  email     String? @unique
+  name      String
+  avatar    String?
   createdAt DateTime @default(now()) // 기본 값은 현재 시간으로 설정
   updatedAt DateTime @updatedAt // User가 업데이트될 때 
+  tokens     Token[]
+}
+
+model Token {
+  id        Int       @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
+  payload   String    @unique
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int 
+  createdAt DateTime  @default(now()) // 기본 값은 현재 시간으로 설정
+  updatedAt DateTime  @updatedAt // User가 업데이트될 때
 }
 

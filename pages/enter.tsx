@@ -12,7 +12,6 @@ interface EnterForm {
 
 export default function Enter() {
   const [enter, { loading, data, error }] = useMutation('/api/users/enter');
-  const [submitLoading, setSubmitLoading] = useState(false);
   const { register, reset, handleSubmit } = useForm();
   const [method, setMethod] = useState<'email' | 'phone'>('email');
   const onEmailClick = () => {
@@ -90,7 +89,7 @@ export default function Enter() {
 
           <CustomButton
             title={
-              submitLoading
+              loading
                 ? 'loading...'
                 : method === 'email'
                 ? 'Get login link'
