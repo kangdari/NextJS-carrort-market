@@ -13,9 +13,9 @@ datasource db {
 }
 
 model User {
-  id        Int     @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
-  phone     Int?    @unique // optional, 고유한 옵션 
-  email     String? @unique
+  id        Int       @id @default(autoincrement()) // 자동으로 증가하는 필드로 설정 
+  phone     String?   @unique // optional, 고유한 옵션 
+  email     String?   @unique
   name      String
   avatar    String?
   createdAt DateTime @default(now()) // 기본 값은 현재 시간으로 설정
