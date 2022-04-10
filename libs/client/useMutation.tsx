@@ -1,25 +1,23 @@
 import { useState } from 'react';
 
-interface UseMutationState {
+interface UseMutationState<T> {
   loading: boolean;
-  data?: object;
+  data?: T;
   error?: object;
 }
 
-type UseMutationStateResult = [
-  (data?: any) => void,
-  { loading: boolean; data: undefined | any; error: undefined | any }
-];
+type UseMutationStateResult<T> = [(data?: any) => void, UseMutationState<T>];
 
-export default function useMutation(url: string): UseMutationStateResult {
-  const [state, setState] = useState({
+export default function useMutation<T = any>(
+  url: string
+): UseMutationStateResult<T> {
+  const [state, setState] = useState<UseMutationState<T>>({
     loading: false,
     data: undefined,
     error: undefined,
   });
 
   const mutation = (data: any) => {
-    console.log(data);
     setState({
       ...state,
       loading: true,
@@ -32,24 +30,10 @@ export default function useMutation(url: string): UseMutationStateResult {
       },
       body: JSON.stringify(data),
     })
-      .then((res) => res.json().catch(() => {}))
-      .then((data) =>
-        setState({
-          ...state,
-          data,
-        })
-      )
+      .then((response) => response.json().catch(() => {}))
+      .then((data) => setState((prev) => ({ ...prev, data, loading: false })))
       .catch((error) =>
-        setState({
-          ...state,
-          error,
-        })
-      )
-      .finally(() =>
-        setState({
-          ...state,
-          loading: false,
-        })
+        setState((prev) => ({ ...prev, error, loading: false }))
       );
   };
 

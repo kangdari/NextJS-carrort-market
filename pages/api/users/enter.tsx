@@ -13,6 +13,7 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   const { phone, email } = req.body;
+
   const user = phone ? { phone } : email ? { email } : null;
   if (!user) return res.status(400).json({ ok: false });
 
@@ -37,19 +38,19 @@ async function handler(
   });
 
   if (phone) {
-    const message = await twilioClient.messages.create({
-      messagingServiceSid: process.env.MESSAGING_SERVICE_ID,
-      to: process.env.PHONE_NUM!,
-      body: `your login token is ${payload}`,
-    });
+    // const message = await twilioClient.messages.create({
+    //   messagingServiceSid: process.env.MESSAGING_SERVICE_ID,
+    //   to: process.env.PHONE_NUM!,
+    //   body: `your login token is ${payload}`,
+    // });
   } else if (email) {
-    const email = await mail.send({
-      from: 'ksh44820@naver.com',
-      to: 'ksh44820@naver.com',
-      subject: 'your carrot market Verification Email',
-      text: `your token is ${payload}`,
-      html: `<strong>your token is ${payload}</strong>`,
-    });
+    // const email = await mail.send({
+    //   from: 'ksh44820@naver.com',
+    //   to: 'ksh44820@naver.com',
+    //   subject: 'your carrot market Verification Email',
+    //   text: `your token is ${payload}`,
+    //   html: `<strong>your token is ${payload}</strong>`,
+    // });
   }
 
   return res.json({

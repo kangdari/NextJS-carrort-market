@@ -10,9 +10,27 @@ interface EnterForm {
   phone?: string;
 }
 
+interface TokenForm {
+  token: string;
+}
+
+interface MutationResult {
+  ok: boolean;
+}
+
 export default function Enter() {
-  const [enter, { loading, data, error }] = useMutation('/api/users/enter');
-  const { register, reset, handleSubmit } = useForm();
+  const [enter, { loading, data, error }] = useMutation<MutationResult>(
+    '/api/users/enter'
+  );
+  const [
+    confirmToken,
+    { loading: tokenLoading, data: tokenData },
+  ] = useMutation<MutationResult>('/api/users/confirm');
+  const { register, reset, handleSubmit } = useForm<EnterForm>();
+  const {
+    register: tokenRegister,
+    handleSubmit: tokenHandleSubmit,
+  } = useForm<TokenForm>();
   const [method, setMethod] = useState<'email' | 'phone'>('email');
   const onEmailClick = () => {
     reset();
@@ -26,6 +44,14 @@ export default function Enter() {
   const onValid = async (validForm: EnterForm) => {
     enter(validForm);
   };
+
+  const onTokenValid = async (validForm: TokenForm) => {
+    console.log(validForm);
+    if (tokenLoading) return;
+    confirmToken(validForm);
+  };
+
+  console.log(`ok : ${data?.ok}`);
 
   return (
     <div className='mt-16 px-4'>
@@ -58,43 +84,67 @@ export default function Enter() {
             </button>
           </div>
         </div>
-        <form onSubmit={handleSubmit(onValid)} className='flex flex-col mt-8'>
-          {method === 'email' && (
+        {data?.ok ? (
+          <form
+            onSubmit={tokenHandleSubmit(onTokenValid)}
+            className='flex flex-col mt-8'
+          >
             <Input
-              register={register('email', {
-                // required: true,
+              register={tokenRegister('token', {
+                required: true,
               })}
-              name='email'
-              type='email'
-              label='Email address'
+              name='token'
+              type='number'
+              label='Confirmation Token'
               required
             />
-          )}
 
-          {method === 'phone' && (
-            <Input
-              register={register('phone', {
-                // required: true,
-              })}
-              name='phone'
-              type='phone'
-              label='Phone number'
-              required
+            <CustomButton
+              title={tokenLoading ? 'loading...' : 'Confirm Token'}
+              size='small'
+              className='mt-6'
             />
-          )}
+          </form>
+        ) : (
+          <form onSubmit={handleSubmit(onValid)} className='flex flex-col mt-8'>
+            {method === 'email' && (
+              <Input
+                register={register('email', {
+                  // required: true,
+                })}
+                name='email'
+                type='email'
+                label='Email address'
+                required
+              />
+            )}
 
-          <CustomButton
-            title={
-              loading
-                ? 'loading...'
-                : method === 'email'
-                ? 'Get login link'
-                : 'Get one-time password'
-            }
-            size='small'
-            className='mt-6'
-          />
-        </form>
+            {method === 'phone' && (
+              <Input
+                register={register('phone', {
+                  // required: true,
+                })}
+                name='phone'
+                type='phone'
+                label='Phone number'
+                required
+              />
+            )}
+
+            <CustomButton
+              title={
+                loading
+                  ? 'loading...'
+                  : method === 'email'
+                  ? 'Get login link'
+                  : 'Get one-time password'
+              }
+              size='small'
+              className='mt-6'
+            />
+          </form>
+        )}
+
         <div className='mt-8'>
           <div className='relative'>
             <div className='absolute w-full border-t border-gray-300' />
