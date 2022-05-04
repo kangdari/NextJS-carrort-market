@@ -47,7 +47,6 @@ export default function Enter() {
   };
 
   const onTokenValid = async (validForm: TokenForm) => {
-    console.log(validForm);
     if (tokenLoading) return;
     confirmToken(validForm);
   };

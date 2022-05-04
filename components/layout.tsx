@@ -21,8 +21,6 @@ export default function Layout({
     route.back();
   };
 
-  console.log(route.pathname);
-
   return (
     <div>
       <div

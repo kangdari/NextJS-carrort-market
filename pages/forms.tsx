@@ -18,7 +18,6 @@ export default function forms() {
     // mode: "onChange"
     mode: 'onBlur',
   });
-  // console.log(errors);
 
   const onValid = (data: LoginForm) => {
     console.log('im valid');

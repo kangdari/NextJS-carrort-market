@@ -16,7 +16,6 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ) {
   const { token } = req.body;
-  console.log(`token: ${token}`);
 
   const foundToken = await client.token.findUnique({
     where: {
