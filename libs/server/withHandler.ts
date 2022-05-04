@@ -5,8 +5,10 @@ export interface ResponseType {
   [key: string]: any;
 }
 
+type method = 'GET' | 'POST' | 'DELETE';
+
 interface ConfigType {
-  method: 'GET' | 'POST' | 'DELETE';
+  methods: method[];
   handler: (req: NextApiRequest, res: NextApiResponse) => void;
   isPrivate?: boolean; // 로그인 상태
 }
@@ -15,13 +17,13 @@ interface ConfigType {
 // 하나 이상의 함수를 인자로 받고
 // 함수를 반환하는 함수
 export default function withHandler(config: ConfigType) {
-  const { method, handler, isPrivate = true } = config;
+  const { methods, handler, isPrivate = true } = config;
 
   return async function (
     req: NextApiRequest,
     res: NextApiResponse
   ): Promise<any> {
-    if (req.method !== method) {
+    if (req.method && !methods.includes(req.method as any)) {
       return res.status(405).end();
     }
 

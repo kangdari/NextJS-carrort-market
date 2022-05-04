@@ -4,9 +4,18 @@ import ListItem from '@components/ListItem';
 import useUser from '@libs/client/useUser';
 import Head from 'next/head';
 import Link from 'next/link';
+import useSWR from 'swr';
+import { Product } from '@prisma/client';
+
+interface ProductResponse {
+  ok: boolean;
+  products: Product[];
+}
 
 const Home: NextPage = () => {
   const { user, isLoading } = useUser();
+  const { data } = useSWR<ProductResponse>('/api/products');
+  console.log(data);
 
   return (
     <Layout title='홈' hasTabBar>
@@ -14,9 +23,19 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <div className='flex flex-col space-y-5 py-10 divide-y-2 '>
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
-          <ListItem key={i} id={1} />
+        {data?.products?.map((product) => (
+          <ListItem
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            description={product.description}
+            image={''}
+            commnets={1}
+            hearts={1}
+          />
         ))}
+
         <Link href={`/products/upload`}>
           <button className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
             <svg
