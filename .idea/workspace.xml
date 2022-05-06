@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/SimilarItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/SimilarItem.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/api/products/[id].ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/products/[id].ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/products/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +97,7 @@
       <workItem from="1651396829208" duration="2099000" />
       <workItem from="1651399667793" duration="1274000" />
       <workItem from="1651797734048" duration="1000" />
-      <workItem from="1651799089223" duration="4962000" />
+      <workItem from="1651799089223" duration="9233000" />
     </task>
     <servers />
   </component>
