@@ -2,7 +2,7 @@
   "name": "carrot-market",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_OPTIONS=--max-http-header-size=1024 next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
