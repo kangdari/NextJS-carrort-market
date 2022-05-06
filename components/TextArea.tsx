@@ -4,7 +4,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 interface TextAreaProps {
   name?: string;
   label?: string;
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   [key: string]: any;
 }
 

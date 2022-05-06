@@ -10,7 +10,10 @@ const nextConfig = {
         },
       ];
     }
+
+    return [];
   },
+  // webpack:
 };
 
 module.exports = nextConfig;

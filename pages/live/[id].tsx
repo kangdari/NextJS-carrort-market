@@ -8,7 +8,7 @@ const LiveDetail: NextPage = () => {
         <div className='pt-4'>
           <div className='w-full bg-slate-300 aspect-video shadow-sm' />
           <h3 className=' text-gray-800  font-semibold text-2xl mt-2'>
-            Let's try beef!
+            Lets try beef!
           </h3>
         </div>
 

@@ -7,7 +7,7 @@ interface LoginForm {
   errors?: string;
 }
 
-export default function forms() {
+export default function Forms() {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,7 @@ export default function forms() {
     // setError("errors", { message: "backend error"})
     reset();
   };
-  const onInValid = (err: FieldError) => {};
+  const onInValid = (err: any) => {};
 
   return (
     <form onSubmit={handleSubmit(onValid, onInValid)}>

@@ -1,18 +1,27 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import CustomButton from '@components/Button/CustomButton';
 import IconButton from '@components/Button/IconButton';
 import Layout from '@components/layout';
 import SimilarItem from '@components/SimilarItem';
+import {useRouter} from 'next/router';
+import useSWR from 'swr';
+import {useEffect} from 'react';
+import axios from 'axios';
 
 const ItemDetail: NextPage = () => {
+  const router = useRouter();
+  const { data, error } = useSWR(
+    router.query.id ? `/api/products/${router.query.id}` : null
+  );
+
   return (
     <Layout canGoBack>
       <div className='px-4 py-10'>
         <div className='mb-8'>
           {/* todo change to img */}
-          <div className='h-96 bg-slate-400' />
+          <div className='h-96 bg-slate-400'/>
           <div className='flex cursor-pointer py-3 border-t border-b items-center space-x-3'>
-            <div className='w-12 h-12 rounded-full bg-slate-400' />
+            <div className='w-12 h-12 rounded-full bg-slate-400'/>
             <div>
               <p className='text-sm font-medium text-gray-700'>Steve Jebs</p>
               <p className='text-xs font-medium text-gray-500'>
@@ -34,7 +43,7 @@ const ItemDetail: NextPage = () => {
               the first motherfucker to get shot. You understand?
             </p>
             <div className='flex items-center justify-between space-x-2'>
-              <CustomButton title='Talk to seller' />
+              <CustomButton title='Talk to seller'/>
               <IconButton>
                 <svg
                   className='h-6 w-6 '
@@ -59,7 +68,7 @@ const ItemDetail: NextPage = () => {
           <h2 className='text-2xl font-bold text-gray-900'>Similar items</h2>
           <div className='mt-6 grid grid-cols-2 gap-4'>
             {[1, 2, 3, 4, 5, 6].map((_, i) => (
-              <SimilarItem key={i} />
+              <SimilarItem key={i}/>
             ))}
           </div>
         </div>

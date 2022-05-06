@@ -5,15 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/LiveListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/LiveListItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/TextArea.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/TextArea.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/input.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/input.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/users/confirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/users/confirm.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enter.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/forms.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/forms.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index2.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index2.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/live/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/live/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/products/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/buy.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/buy.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/love.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/love.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/sold.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/sold.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,6 +105,8 @@
       <workItem from="1649561528208" duration="258000" />
       <workItem from="1651396829208" duration="2099000" />
       <workItem from="1651399667793" duration="1274000" />
+      <workItem from="1651797734048" duration="1000" />
+      <workItem from="1651799089223" duration="2245000" />
     </task>
     <servers />
   </component>
@@ -117,7 +123,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/next.config.js</url>
-          <line>15</line>
+          <line>17</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>

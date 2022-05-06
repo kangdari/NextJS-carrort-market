@@ -7,7 +7,7 @@ const Sold: NextPage = () => {
     <Layout canGoBack>
       <div className='flex flex-col space-y-5 py-10'>
         {[1, 1, 1, 1, 1, 1, 1, 1].map((_, i) => (
-          <ProfileListItem />
+          <ProfileListItem key={i} />
         ))}
       </div>
     </Layout>
