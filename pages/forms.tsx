@@ -20,7 +20,6 @@ export default function Forms() {
   });
 
   const onValid = (data: LoginForm) => {
-    console.log('im valid');
     // setError("errors", { message: "backend error"})
     reset();
   };

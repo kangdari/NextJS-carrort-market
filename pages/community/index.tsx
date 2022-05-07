@@ -3,6 +3,8 @@ import Link from 'next/Link';
 import Layout from '@components/layout';
 import useSWR from 'swr';
 import {Post, User} from '@prisma/client';
+import {useRouter} from 'next/router';
+import useCoords from '@libs/client/useCoords';
 
 interface PostWithUser extends Post {
   user: User;
@@ -18,8 +20,12 @@ interface PostsResponse {
 }
 
 const Community: NextPage = () => {
+  const {latitude, longitude} = useCoords();
+  const router = useRouter();
   // get posts
-  const {data} = useSWR<PostsResponse>(`/api/posts`);
+  const {data} = useSWR<PostsResponse>(
+    (latitude && longitude) ?
+      `/api/posts?latitude=${latitude}&longitude=${longitude}` : null);
 
   return (
     <Layout title='동네생활' hasTabBar>
@@ -80,6 +86,7 @@ const Community: NextPage = () => {
 
         ))}
         <button
+          onClick={() => router.push(`/community/write`)}
           className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
           <svg
             className='w-6 h-6'

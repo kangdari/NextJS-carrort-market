@@ -50,8 +50,6 @@ const CommunityPostDetail: NextPage = () => {
   const [wonder, {loading}] = useMutation<AnswerResponse>(`/api/posts/${router.query.id}/wonder`);
   const [sendAnswer, {data: answerData, loading: answerLoading}] = useMutation(`/api/posts/${router.query.id}/answers`);
 
-  console.log(data);
-
   const onValid = (form: AnswerForm) => {
     if (answerLoading) return;
     sendAnswer(form);

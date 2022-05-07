@@ -25,7 +25,6 @@ export default function Enter() {
   const [enter, {loading, data, error}] = useMutation<MutationResult>(
     '/api/users/enter'
   );
-  console.log(data?.token?.payload);
   const [
     confirmToken,
     {loading: tokenLoading, data: tokenData},
