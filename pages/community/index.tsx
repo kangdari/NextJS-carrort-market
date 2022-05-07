@@ -1,13 +1,17 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import Layout from '@components/layout';
 
 const Community: NextPage = () => {
+  // get posts
+
+
   return (
     <Layout title='동네생활' hasTabBar>
       <div className='py-16 px-4 space-y-8'>
         {[1, 2, 3, 4, 5].map((_, i) => (
           <div key={i} className='flex flex-col items-start cursor-pointer'>
-            <span className='flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800'>
+            <span
+              className='flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800'>
               동네질문
             </span>
             <div className='mt-2 text-gray-700'>
@@ -56,7 +60,8 @@ const Community: NextPage = () => {
             </div>
           </div>
         ))}
-        <button className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
+        <button
+          className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
           <svg
             className='w-6 h-6'
             fill='none'

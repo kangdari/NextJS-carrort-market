@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import React from 'react';
-import { cls } from '@libs/client/utils';
+import {cls} from '@libs/client/utils';
 
 interface LayoutProps {
   title?: string;
@@ -11,11 +11,11 @@ interface LayoutProps {
 }
 
 export default function Layout({
-  title,
-  canGoBack,
-  hasTabBar,
-  children,
-}: LayoutProps) {
+                                 title,
+                                 canGoBack,
+                                 hasTabBar,
+                                 children,
+                               }: LayoutProps) {
   const route = useRouter();
   const onClick = () => {
     route.back();
@@ -47,11 +47,15 @@ export default function Layout({
             </svg>
           </button>
         )}
-        {title && <span>{title}</span>}
+        {title &&
+        <div className={"w-full text-center"}>
+          <span>{title}</span>
+        </div>}
       </div>
       <div className={cls('pt-12', hasTabBar ? 'pb-24' : '')}>{children}</div>
       {hasTabBar && (
-        <nav className=' bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs'>
+        <nav
+          className=' bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs'>
           <Link href='/'>
             <a
               className={cls(
