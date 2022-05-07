@@ -6,6 +6,8 @@ import TextArea from '@components/TextArea';
 import {useRouter} from 'next/router';
 import {Post, User, Answer} from '@prisma/client';
 import useSWR from 'swr';
+import useMutation from '@libs/client/useMutation';
+import {cls} from '@libs/client/utils';
 
 interface AnswerWithUser extends Answer {
   user: User
@@ -18,26 +20,48 @@ interface PostWithUser extends Post {
     : {
     answers: number;
     wonderings: number;
-  }
+  },
 }
 
 interface CommunityPostResponse {
   ok: boolean;
-  post: PostWithUser
+  post: PostWithUser;
+  isWondering: boolean
+
 }
 
 const CommunityPostDetail: NextPage = () => {
   const router = useRouter();
-  const {data, error} = useSWR<CommunityPostResponse>(router.query.id ? `/api/posts/${router.query.id}` : null);
+  const {
+    data,
+    error,
+    mutate: boundMutate
+  } = useSWR<CommunityPostResponse>(router.query.id ? `/api/posts/${router.query.id}` : null);
+  const [wonder] = useMutation(`/api/posts/${router.query.id}/wonder`);
 
+  // Optimistic UI Update
+  const onWonderClick = () => {
+    if (!data) return;
+    // boundMutate: swr 캐시에 있는 데이터 업데이트
+    // boundMutate((prev: any) => prev && {...prev, }); // bound mutate
+    boundMutate({
+      ...data,
+      post: {
+        ...data.post, _count: {
+          ...data.post._count,
+          wonderings: data?.isWondering ? data?.post._count.wonderings - 1 : data?.post._count.wonderings + 1,
+        },
+      },
+      isWondering: !data?.isWondering
 
-  console.log(data);
+    }, false); // bound mutate
+    // revalidating : true => api에 업데이트한 캐쉬데이터가 맞는지 확인 request를 보냄
+    // 맞으면 그대로
+    // 틀리면 api 데이터로
 
-  if (!data?.post) {
-    return <div>
-      없어
-    </div>;
-  }
+    // 백엔드 요청
+    wonder({});
+  };
 
   return (
     <Layout canGoBack>
@@ -64,7 +88,8 @@ const CommunityPostDetail: NextPage = () => {
             {data?.post?.question}
           </div>
           <div className='flex px-4 space-x-5 mt-3 text-gray-700 py-2.5 border-t border-b-[2px]  w-full'>
-            <span className='flex space-x-2 items-center text-sm'>
+            <button onClick={onWonderClick}
+                    className={cls('flex space-x-2 items-center text-sm', data?.isWondering ? 'text-teal-400' : '')}>
               <svg
                 className='w-4 h-4'
                 fill='none'
@@ -80,7 +105,7 @@ const CommunityPostDetail: NextPage = () => {
                 ></path>
               </svg>
               <span>궁금해요 {data?.post?._count?.wonderings}</span>
-            </span>
+            </button>
             <span className='flex space-x-2 items-center text-sm'>
               <svg
                 className='w-4 h-4'
@@ -110,7 +135,7 @@ const CommunityPostDetail: NextPage = () => {
               </span>
                 <span className='text-xs text-gray-500 block '>{answer.createdAt}</span>
                 <p className='text-gray-700 mt-2'>
-                  {answer.answer}
+                  {answer?.answer}
                 </p>
               </div>
             </div>

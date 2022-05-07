@@ -5,18 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/api/posts/[id].ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/posts/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/posts/[id]/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/posts/[id]/wonder.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/client/useUser.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/client/useUser.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/products/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/products/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/users/me.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/users/me.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/posts/[id].ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/community/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/community/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/community/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/community/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/community/write.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/community/write.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +75,11 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/api/posts/[id]" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -106,7 +104,7 @@
       <workItem from="1651797734048" duration="1000" />
       <workItem from="1651799089223" duration="9233000" />
       <workItem from="1651902477042" duration="2008000" />
-      <workItem from="1651904693583" duration="2889000" />
+      <workItem from="1651904693583" duration="5385000" />
     </task>
     <servers />
   </component>
