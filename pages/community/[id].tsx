@@ -8,6 +8,8 @@ import {Post, User, Answer} from '@prisma/client';
 import useSWR from 'swr';
 import useMutation from '@libs/client/useMutation';
 import {cls} from '@libs/client/utils';
+import {useForm} from 'react-hook-form';
+import {useEffect} from 'react';
 
 interface AnswerWithUser extends Answer {
   user: User
@@ -27,17 +29,33 @@ interface CommunityPostResponse {
   ok: boolean;
   post: PostWithUser;
   isWondering: boolean
+}
 
+interface AnswerForm {
+  answer: Answer;
+}
+
+interface AnswerResponse {
+  ok: boolean;
+  answer: Answer;
 }
 
 const CommunityPostDetail: NextPage = () => {
   const router = useRouter();
+  const {register, handleSubmit, reset} = useForm<AnswerForm>();
   const {
     data,
-    error,
-    mutate: boundMutate
+    mutate: boundMutate,
   } = useSWR<CommunityPostResponse>(router.query.id ? `/api/posts/${router.query.id}` : null);
-  const [wonder] = useMutation(`/api/posts/${router.query.id}/wonder`);
+  const [wonder, {loading}] = useMutation<AnswerResponse>(`/api/posts/${router.query.id}/wonder`);
+  const [sendAnswer, {data: answerData, loading: answerLoading}] = useMutation(`/api/posts/${router.query.id}/answers`);
+
+  console.log(data);
+
+  const onValid = (form: AnswerForm) => {
+    if (answerLoading) return;
+    sendAnswer(form);
+  };
 
   // Optimistic UI Update
   const onWonderClick = () => {
@@ -49,7 +67,9 @@ const CommunityPostDetail: NextPage = () => {
       post: {
         ...data.post, _count: {
           ...data.post._count,
-          wonderings: data?.isWondering ? data?.post._count.wonderings - 1 : data?.post._count.wonderings + 1,
+          wonderings: data?.isWondering
+            ? data?.post._count.wonderings - 1
+            : data?.post._count.wonderings + 1,
         },
       },
       isWondering: !data?.isWondering
@@ -60,8 +80,18 @@ const CommunityPostDetail: NextPage = () => {
     // 틀리면 api 데이터로
 
     // 백엔드 요청
-    wonder({});
+    // race condition 방지
+    if (!loading) {
+      wonder({});
+    }
   };
+
+  useEffect(() => {
+    if (answerData && answerData.ok) {
+      reset();
+      boundMutate();
+    }
+  }, [answerData, reset, boundMutate]);
 
   return (
     <Layout canGoBack>
@@ -142,15 +172,18 @@ const CommunityPostDetail: NextPage = () => {
           )}
         </div>
 
-        <div className='px-4'>
-          <TextArea rows={4} placeholder='Answer this question!'/>
+        <form className='px-4' onSubmit={handleSubmit(onValid)}>
+          <TextArea
+            register={register('answer', {required: true, minLength: 5})}
+            required
+            rows={4} placeholder='Answer this question!'/>
           <CustomButton
-            title='Upload product'
+            title={answerLoading ? 'loading...' : 'reply'}
             full
             size='small'
             className='mt-2'
           />
-        </div>
+        </form>
       </div>
     </Layout>
   );

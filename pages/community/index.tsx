@@ -1,64 +1,83 @@
 import type {NextPage} from 'next';
+import Link from 'next/Link';
 import Layout from '@components/layout';
+import useSWR from 'swr';
+import {Post, User} from '@prisma/client';
+
+interface PostWithUser extends Post {
+  user: User;
+  _count: {
+    wonderings: number;
+    answers: number;
+  }
+}
+
+interface PostsResponse {
+  ok: boolean;
+  posts: PostWithUser[]
+}
 
 const Community: NextPage = () => {
   // get posts
-
+  const {data} = useSWR<PostsResponse>(`/api/posts`);
 
   return (
     <Layout title='동네생활' hasTabBar>
       <div className='py-16 px-4 space-y-8'>
-        {[1, 2, 3, 4, 5].map((_, i) => (
-          <div key={i} className='flex flex-col items-start cursor-pointer'>
-            <span
-              className='flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800'>
-              동네질문
-            </span>
-            <div className='mt-2 text-gray-700'>
-              <span className='text-orange-500 font-medium'>Q.</span> What is
-              the best mandu restaurant?
-            </div>
-            <div className='mt-5 flex items-center justify-between w-full text-gray-500 text-xs font-medium'>
-              <span>니꼬</span>
-              <span>18시간 전</span>
-            </div>
-            <div className='flex space-x-5 mt-3 text-gray-700 py-2.5 border-t border-b-[2px] w-full'>
-              <span className='flex space-x-2 items-center text-sm'>
-                <svg
-                  className='w-4 h-4'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
-                  ></path>
-                </svg>
-                <span>궁금해요 1</span>
-              </span>
-              <span className='flex space-x-2 items-center text-sm'>
-                <svg
-                  className='w-4 h-4'
-                  fill='none'
-                  stroke='currentColor'
-                  viewBox='0 0 24 24'
-                  xmlns='http://www.w3.org/2000/svg'
-                >
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth='2'
-                    d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
-                  ></path>
-                </svg>
-                <span>답변 1</span>
-              </span>
-            </div>
-          </div>
+        {data?.posts?.map((post) => (
+          <Link key={post?.id} href={`/community/${post?.id}`}>
+            <a className='flex flex-col items-start cursor-pointer'>
+          <span
+            className='flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800'>
+          동네질문
+          </span>
+              <div className='mt-2 text-gray-700'>
+                <span className='text-orange-500 font-medium'>Q. </span>
+                {post?.question}
+              </div>
+              <div className='mt-5 flex items-center justify-between w-full text-gray-500 text-xs font-medium'>
+                <span>{post?.user?.name}</span>
+                <span>18시간 전</span>
+              </div>
+              <div className='flex space-x-5 mt-3 text-gray-700 py-2.5 border-t border-b-[2px] w-full'>
+          <span className='flex space-x-2 items-center text-sm'>
+          <svg
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
+          ></path>
+          </svg>
+          <span>궁금해요 {post?._count?.wonderings}</span>
+          </span>
+                <span className='flex space-x-2 items-center text-sm'>
+          <svg
+            className='w-4 h-4'
+            fill='none'
+            stroke='currentColor'
+            viewBox='0 0 24 24'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+          <path
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth='2'
+            d='M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z'
+          ></path>
+          </svg>
+          <span>답변 {post?._count?.answers}</span>
+          </span>
+              </div>
+            </a>
+          </Link>
+
         ))}
         <button
           className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
