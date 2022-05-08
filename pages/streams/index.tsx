@@ -12,7 +12,6 @@ interface StreamsResponse {
 
 const Streams: NextPage = () => {
 
-
   const router = useRouter();
   const {data} = useSWR<StreamsResponse>('/api/streams?page=');
   return (

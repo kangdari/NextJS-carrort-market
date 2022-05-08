@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/components/Message.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/streams/[id]/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/streams/[id]/messages.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/api/streams/index.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/streams/create.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/prisma/seed.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/reviews.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/users/me/favs.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/users/me/purchases.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/api/users/me/sales.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/LiveListItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/LiveListItem.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/components/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/posts/[id]/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/posts/[id]/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/live/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/streams/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/live/index.tsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/users/confirm.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/users/me/confirm.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/users/enter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/users/me/enter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/api/users/me.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/users/me/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/streams/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/streams/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prisma/schema.prisma" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/schema.prisma" afterDir="false" />
     </list>
@@ -88,6 +83,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/api/users/me" />
       <recent name="$PROJECT_DIR$/pages/api/streams/[id]" />
       <recent name="$PROJECT_DIR$/pages/api/posts/[id]" />
     </key>
@@ -117,12 +113,24 @@
       <workItem from="1651799089223" duration="9233000" />
       <workItem from="1651902477042" duration="2008000" />
       <workItem from="1651904693583" duration="13105000" />
-      <workItem from="1651987267560" duration="7381000" />
+      <workItem from="1651987267560" duration="8158000" />
+      <workItem from="1652017158032" duration="1898000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pages/profile/index.tsx</url>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
