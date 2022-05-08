@@ -1,13 +1,23 @@
 import React from 'react';
+import Link from 'next/Link';
+import {Stream} from '@prisma/client';
 
-interface LiveListItemProps {}
+interface LiveListItemProps {
+  stream: Stream
+}
 
-const LiveListItem = ({}: LiveListItemProps) => {
+const LiveListItem = ({stream}: LiveListItemProps) => {
   return (
-    <div className='pt-4'>
-      <div className='w-full bg-slate-300 aspect-video shadow-sm' />
-      <h3 className=' text-gray-700 text-lg mt-2'>beef!</h3>
-    </div>
+    <Link href={`/streams/${stream?.id}`}>
+      <a>
+        <div className='pt-4'>
+          <div className='w-full bg-slate-300 aspect-video shadow-sm'/>
+          <h3 className=' text-gray-700 text-lg mt-2'>{stream.name}</h3>
+        </div>
+      </a>
+    </Link>
+
+
   );
 };
 

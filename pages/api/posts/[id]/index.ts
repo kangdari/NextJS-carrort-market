@@ -32,7 +32,9 @@ async function handler(
               avatar: true
             }
           }
-        }
+        },
+        take: 10,
+        skip: 10
       },
       _count: {
         select: {

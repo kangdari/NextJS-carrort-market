@@ -133,11 +133,11 @@ export default function Layout({
             </a>
           </Link>
 
-          <Link href='/live'>
+          <Link href='/streams'>
             <a
               className={cls(
                 'cursor-pointer flex flex-col items-center space-y-2',
-                route.pathname === '/live' ? 'text-orange-500' : ''
+                route.pathname === '/streams' ? 'text-orange-500' : ''
               )}
             >
               <svg
