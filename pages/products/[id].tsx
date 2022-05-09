@@ -1,12 +1,12 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import Link from 'next/link';
 import CustomButton from '@components/Button/CustomButton';
 import IconButton from '@components/Button/IconButton';
 import Layout from '@components/layout';
 import SimilarItem from '@components/SimilarItem';
-import { useRouter } from 'next/router';
-import useSWR, { useSWRConfig } from 'swr';
-import { Product, User } from '@prisma/client';
+import {useRouter} from 'next/router';
+import useSWR, {useSWRConfig} from 'swr';
+import {Product, User} from '@prisma/client';
 import useMutation from '@libs/client/useMutation';
 import useUser from '@libs/client/useUser';
 
@@ -22,12 +22,12 @@ interface ItemDetailResponse {
 }
 
 const ItemDetail: NextPage = () => {
-  const { user, isLoading } = useUser();
+  const {user, isLoading} = useUser();
   const router = useRouter();
   // 다른 화면의 데이터를 변경하길 원한다면 unbound mutate 사용
-  const { mutate } = useSWRConfig();
+  const {mutate} = useSWRConfig();
   // 해당 화면에서 얻은 데이터만 변경하려면 boundMutate 사용
-  const { data, mutate: boundMutate } = useSWR<ItemDetailResponse>(
+  const {data, mutate: boundMutate} = useSWR<ItemDetailResponse>(
     router.query.id ? `/api/products/${router.query.id}` : null
   );
   const [toggleFav] = useMutation(`/api/products/${router.query.id}/fav`);
@@ -37,7 +37,7 @@ const ItemDetail: NextPage = () => {
     if (!data) return;
     // 두번째 인자가 true이면 SWR이 서버에 데이터 검증을 위해 재요청
     boundMutate(
-      (prev: any) => prev && { ...prev, isLiked: !prev.isLiked },
+      (prev: any) => prev && {...prev, isLiked: !prev.isLiked},
       false
     );
     // 다른 페이지 SWR 캐시의 데이터를 원하는 곳에서 mutate
@@ -65,14 +65,20 @@ const ItemDetail: NextPage = () => {
       <div className='px-4 py-10'>
         <div className='mb-8'>
           {/* todo change to img */}
-          <div className='h-96 bg-slate-400' />
+          <img
+            src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.image}/public`}
+            className='h-96 bg-slate-400'
+          />
           <div className='flex cursor-pointer py-3 border-t border-b items-center space-x-3'>
-            <div className='w-12 h-12 rounded-full bg-slate-400' />
+            <img
+              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.user?.avatar}/avatar`}
+              className='w-12 h-12 rounded-full'
+            />
             <div>
               <p className='text-sm font-medium text-gray-700'>
                 {data?.product?.user?.name}
               </p>
-              <Link href={`/users/profiles/${data?.product?.user?.id}`}>
+              <Link href={`/profile/${data?.product?.user?.id}`}>
                 <a className='text-xs font-medium text-gray-500'>
                   View profile &rarr;
                 </a>
@@ -90,7 +96,7 @@ const ItemDetail: NextPage = () => {
               {data?.product?.description}
             </p>
             <div className='flex items-center justify-between space-x-2'>
-              <CustomButton title='Talk to seller' />
+              <CustomButton title='Talk to seller'/>
               <IconButton onClick={onFavClick} isLiked={data?.isLiked}>
                 {data?.isLiked ? (
                   <svg
