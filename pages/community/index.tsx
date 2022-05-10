@@ -112,7 +112,7 @@ const Community: NextPage<PostsResponse> = ({posts}) => {
 
 // ISR
 export async function getStaticProps() {
-  console.log("hihihihiih")
+  console.log("ODR POST....")
   const posts = await client.post.findMany({
     include: {
       user: true
@@ -123,8 +123,11 @@ export async function getStaticProps() {
     props: {
       posts: JSON.parse(JSON.stringify(posts))
     },
-    revalidate: 20, // 20s에 한 번씩 next js가 재 빌드
+    // revalidate: 20, // 20s에 한 번씩 next js가 재 빌드
     // 데이터가 최신 데이터라고 간주하는 시간
+
+    // ODR
+    // revalidate: 120,
   };
 }
 

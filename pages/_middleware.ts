@@ -7,11 +7,11 @@ export function middleware(req: NextRequest, ev: NextFetchEvent) {
     return new Response('plz don\'t be a bot!!!');
   }
   //
-  if (!req.url.includes('/api')) {
-    if (!req.url.includes('/enter') && !req.cookies.carrotSession) {
-      // 유저가 없음
-      return NextResponse.redirect('/enter');
-    }
-  }
+  // if (!req.url.includes('/api')) {
+  //   if (!req.url.includes('/enter') && !req.cookies.carrotSession) {
+  //     // 유저가 없음
+  //     return NextResponse.redirect('/enter');
+  //   }
+  // }
   // return NextResponse.json({ok: true});
 }

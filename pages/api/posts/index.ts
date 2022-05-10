@@ -29,6 +29,9 @@ async function handler(
       }
     });
 
+    // /community 해당 url page 재 build
+    await res.unstable_revalidate('/community');
+
     res.json({
       ok: true,
       post
