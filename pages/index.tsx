@@ -5,9 +5,10 @@ import ListItem from '@components/ListItem';
 import useUser from '@libs/client/useUser';
 import Head from 'next/head';
 import Link from 'next/link';
-import useSWR from 'swr';
+import useSWR, {SWRConfig} from 'swr';
 import {Product} from '@prisma/client';
 import screenShot from '../public/screenShot.png';
+import client from '@libs/server/client';
 
 interface ProductWithCount extends Product {
   _count: {
@@ -21,7 +22,7 @@ interface ProductResponse {
 }
 
 const Home: NextPage = () => {
-  const {user, isLoading} = useUser();
+  useUser();
   const {data} = useSWR<ProductResponse>('/api/products');
 
   return (
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
         <title>Home</title>
       </Head>
       <div className='flex flex-col space-y-5 py-10 divide-y-2 '>
-        {data?.products?.map((product) => (
+        {data ? data?.products?.map((product) => (
           <ListItem
             key={product.id}
             id={product.id}
@@ -39,9 +40,9 @@ const Home: NextPage = () => {
             description={product.description}
             image={''}
             commnets={1}
-            hearts={product._count.favs}
+            hearts={product._count?.favs}
           />
-        ))}
+        )) : 'loading'}
 
         <Link href={`/products/upload`}>
           <button
@@ -64,9 +65,42 @@ const Home: NextPage = () => {
           </button>
         </Link>
       </div>
-      <Image src={screenShot} placeholder="blur" />
+      <Image src={screenShot} placeholder="blur"/>
     </Layout>
   );
 };
 
-export default Home;
+
+// export default Home;
+
+const Page: NextPage<{ products: ProductWithCount[] }> = ({products}) => {
+  // SWRConfig로 Home 컴포넌트를 감싸주고
+  // '/api/products'키의 데이터 => 캐시 저장
+  return (
+    <SWRConfig value={{
+      fallback: {
+        '/api/products': {
+          ok: true,
+          products
+        }
+      }
+    }}>
+      <Home/>
+    </SWRConfig>
+  );
+};
+
+export async function getServerSideProps() {
+  const products = await client.product.findMany({});
+
+  return {
+    props: {
+      products: JSON.parse(JSON.stringify(products))
+    }
+  };
+}
+
+
+export default Page;
+
+
