@@ -5,10 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/blog/[slug].tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/blog/index.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posts/01-first-post.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/posts/02-climbing.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libs/server/withSession.ts" beforeDir="false" afterPath="$PROJECT_DIR$/libs/server/withSession.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,11 +81,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/pages/blog" />
       <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/pages/api/users" />
       <recent name="$PROJECT_DIR$/pages/api/users/me" />
       <recent name="$PROJECT_DIR$/pages/api/streams/[id]" />
-      <recent name="$PROJECT_DIR$/pages/api/posts/[id]" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -114,7 +119,7 @@
       <workItem from="1652101382132" duration="160000" />
       <workItem from="1652137028198" duration="488000" />
       <workItem from="1652141772991" duration="1291000" />
-      <workItem from="1652145797742" duration="8841000" />
+      <workItem from="1652145797742" duration="14922000" />
     </task>
     <servers />
   </component>

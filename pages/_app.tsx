@@ -25,19 +25,19 @@ function MyApp({Component, pageProps}: AppProps) {
       {/* lazyOnload:  */}
 
       {/* GA도 페북처럼 연결 */}
-      <Script
-        src="https://connect.facebook.net/en_US/sdk.js"
-        onLoad={() => {
-          window.fbAsyncInit = function () {
-            FB.init({
-              appId: 'your-app-id',
-              autoLogAppEvents: true,
-              xfbml: true,
-              version: 'v13.0',
-            });
-          };
-        }}
-      />
+      {/*<Script*/}
+      {/*  src="https://connect.facebook.net/en_US/sdk.js"*/}
+      {/*  onLoad={() => {*/}
+      {/*    window.fbAsyncInit = function () {*/}
+      {/*      FB.init({*/}
+      {/*        appId: 'your-app-id',*/}
+      {/*        autoLogAppEvents: true,*/}
+      {/*        xfbml: true,*/}
+      {/*        version: 'v13.0',*/}
+      {/*      });*/}
+      {/*    };*/}
+      {/*  }}*/}
+      {/*/>*/}
     </SWRConfig>
   );
 }
