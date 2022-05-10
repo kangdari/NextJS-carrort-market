@@ -1,4 +1,4 @@
-import type {NextPage} from 'next';
+import type {GetStaticPaths, GetStaticProps, NextPage} from 'next';
 import Link from 'next/link';
 import CustomButton from '@components/Button/CustomButton';
 import IconButton from '@components/Button/IconButton';
@@ -10,6 +10,7 @@ import {Product, User} from '@prisma/client';
 import useMutation from '@libs/client/useMutation';
 import useUser from '@libs/client/useUser';
 import Image from 'next/Image';
+import client from '@libs/server/client';
 
 interface ProductWithUser extends Product {
   user: User;
@@ -22,7 +23,12 @@ interface ItemDetailResponse {
   isLiked: boolean;
 }
 
-const ItemDetail: NextPage = () => {
+// 동적 페이지 id에 따라 데이터가 다름
+const ItemDetail: NextPage<ItemDetailResponse> = ({
+                                                    product,
+                                                    relatedProducts,
+                                                    isLiked
+                                                  }) => {
   const {user, isLoading} = useUser();
   const router = useRouter();
   // 다른 화면의 데이터를 변경하길 원한다면 unbound mutate 사용
@@ -61,6 +67,17 @@ const ItemDetail: NextPage = () => {
     toggleFav({});
   };
 
+  // fallback이 true인 경우
+  // 유저에게 원하는 로딩 화면을 보여 줌
+  // 백그라운드에서 페이지를 만드는 중...
+  if(router.isFallback){
+    return(
+      <Layout title="Loading for you....">
+        <span>is fallback</span>
+      </Layout>
+    )
+  }
+
   return (
     <Layout canGoBack seoTitle="Product Detail">
       <div className='px-4 py-4'>
@@ -69,14 +86,14 @@ const ItemDetail: NextPage = () => {
           <div className="relative pb-80">
             <Image
               layout="fill"
-              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.image}/public`}
+              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${product?.image}/public`}
               className='bg-slate-400 object-cover'
             />
             <h1 className="absolute w-full text-center text-red-500">hello</h1>
           </div>
           <div className='flex cursor-pointer py-3 border-t border-b items-center space-x-3'>
             {/*<img*/}
-            {/*  src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.user?.avatar}/avatar`}*/}
+            {/*  src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${product?.user?.avatar}/avatar`}*/}
             {/*  className='w-12 h-12 rounded-full'*/}
             {/*/>*/}
             <Image
@@ -87,9 +104,9 @@ const ItemDetail: NextPage = () => {
             />
             <div>
               <p className='text-sm font-medium text-gray-700'>
-                {data?.product?.user?.name}
+                {product?.user?.name}
               </p>
-              <Link href={`/profile/${data?.product?.user?.id}`}>
+              <Link href={`/profile/${product?.user?.id}`}>
                 <a className='text-xs font-medium text-gray-500'>
                   View profile &rarr;
                 </a>
@@ -98,18 +115,18 @@ const ItemDetail: NextPage = () => {
           </div>
           <div className='mt-5'>
             <h1 className='text-3xl font-bold text-gray-900'>
-              {data?.product?.name}
+              {product?.name}
             </h1>
             <span className='text-3xl block mt-3 text-gray-900'>
-              ${data?.product?.price}
+              ${product?.price}
             </span>
             <p className='text-base my-6 text-gray-700'>
-              {data?.product?.description}
+              {product?.description}
             </p>
             <div className='flex items-center justify-between space-x-2'>
               <CustomButton title='Talk to seller'/>
-              <IconButton onClick={onFavClick} isLiked={data?.isLiked}>
-                {data?.isLiked ? (
+              <IconButton onClick={onFavClick} isLiked={isLiked}>
+                {isLiked ? (
                   <svg
                     xmlns='http://www.w3.org/2000/svg'
                     className='h-5 w-5'
@@ -146,7 +163,7 @@ const ItemDetail: NextPage = () => {
         <div>
           <h2 className='text-2xl font-bold text-gray-900'>Similar items</h2>
           <div className='mt-6 grid grid-cols-2 gap-4'>
-            {data?.relatedProducts?.map((product) => (
+            {relatedProducts?.map((product) => (
               <SimilarItem
                 key={product.id}
                 id={product.id}
@@ -159,6 +176,72 @@ const ItemDetail: NextPage = () => {
       </div>
     </Layout>
   );
+};
+
+export const getStaticPaths = () => {
+  return {
+    paths: [],
+    fallback: 'blocking',
+    // fallback: false,
+    // fallback: true,
+    // blocking
+    // 유저가 getStaticProps나 getStaticPaths를 가지고 있는 페이지를 방문할 때
+    // 만약 그 페이지에 해당하는 html 파일이 없다면... fallback: 'blocking'은
+    // 유저가 잠시 기다리게 만들고, 백그라운드에서 페이지를 만들어서 유저에게 넘겨줌
+    // 딱 한번만 발생. 기본적으로 SSR
+
+    // false
+    // 프로젝트의 빌드 과정에서 만들어진 페이지만 조회 가능
+
+    // true
+    // request 타임에 페이지를 생성할 수 있게 해주지만,
+    // 페이지를 생성하는 동안에 유저에게 무엇인가 보여줌
+  };
+};
+
+export const getStaticProps: GetStaticProps = async (ctx) => {
+  if (!ctx?.params?.id) {
+    return {
+      props: {},
+    };
+  }
+  const product = await client.product.findUnique({
+    where: {
+      id: +ctx.params.id.toString(),
+    },
+    include: {
+      user: {
+        select: {
+          id: true,
+          name: true,
+          avatar: true,
+        },
+      },
+    },
+  });
+  const terms = product?.name.split(' ').map((word) => ({
+    name: {
+      contains: word,
+    },
+  }));
+  const relatedProducts = await client.product.findMany({
+    where: {
+      OR: terms,
+      AND: {
+        id: {
+          not: product?.id,
+        },
+      },
+    },
+  });
+  const isLiked = false;
+  return {
+    props: {
+      product: JSON.parse(JSON.stringify(product)),
+      relatedProducts: JSON.parse(JSON.stringify(relatedProducts)),
+      isLiked,
+    },
+  };
 };
 
 export default ItemDetail;
