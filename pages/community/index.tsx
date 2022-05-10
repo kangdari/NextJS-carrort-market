@@ -5,6 +5,7 @@ import useSWR from 'swr';
 import {Post, User} from '@prisma/client';
 import {useRouter} from 'next/router';
 import useCoords from '@libs/client/useCoords';
+import client from '@libs/server/client';
 
 interface PostWithUser extends Post {
   user: User;
@@ -19,18 +20,18 @@ interface PostsResponse {
   posts: PostWithUser[]
 }
 
-const Community: NextPage = () => {
-  const {latitude, longitude} = useCoords();
+const Community: NextPage<PostsResponse> = ({posts}) => {
   const router = useRouter();
-  // get posts
-  const {data} = useSWR<PostsResponse>(
-    (latitude && longitude) ?
-      `/api/posts?latitude=${latitude}&longitude=${longitude}` : null);
+  // const {latitude, longitude} = useCoords();
+  // // get posts
+  // const {data} = useSWR<PostsResponse>(
+  //   (latitude && longitude) ?
+  //     `/api/posts?latitude=${latitude}&longitude=${longitude}` : null);
 
   return (
     <Layout title='동네생활' hasTabBar>
       <div className='py-16 px-4 space-y-8'>
-        {data?.posts?.map((post) => (
+        {posts?.map((post) => (
           <Link key={post?.id} href={`/community/${post?.id}`}>
             <a className='flex flex-col items-start cursor-pointer'>
           <span
@@ -107,5 +108,24 @@ const Community: NextPage = () => {
     </Layout>
   );
 };
+
+
+// ISR
+export async function getStaticProps() {
+  console.log("hihihihiih")
+  const posts = await client.post.findMany({
+    include: {
+      user: true
+    }
+  });
+
+  return {
+    props: {
+      posts: JSON.parse(JSON.stringify(posts))
+    },
+    revalidate: 20, // 20s에 한 번씩 next js가 재 빌드
+    // 데이터가 최신 데이터라고 간주하는 시간
+  };
+}
 
 export default Community;

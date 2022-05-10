@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pages/blog/[slug].tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/blog/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts/01-first-post.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/posts/02-climbing.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/styles/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/styles/globals.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/community/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/community/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,7 +112,8 @@
       <workItem from="1652101382132" duration="160000" />
       <workItem from="1652137028198" duration="488000" />
       <workItem from="1652141772991" duration="1291000" />
-      <workItem from="1652145797742" duration="14922000" />
+      <workItem from="1652145797742" duration="15230000" />
+      <workItem from="1652175047604" duration="3173000" />
     </task>
     <servers />
   </component>
