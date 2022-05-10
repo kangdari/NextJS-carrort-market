@@ -5,10 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/components/Bs.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_document.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/_middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/chats/_middleware.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/screenShot.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/products/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/products/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_app.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/enter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/products/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/products/upload.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/upload.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/streams/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/streams/[id].tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +85,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/pages/api/users" />
       <recent name="$PROJECT_DIR$/pages/api/users/me" />
       <recent name="$PROJECT_DIR$/pages/api/streams/[id]" />
@@ -109,7 +119,11 @@
       <workItem from="1651904693583" duration="13105000" />
       <workItem from="1651987267560" duration="8158000" />
       <workItem from="1652017158032" duration="3447000" />
-      <workItem from="1652073016172" duration="8198000" />
+      <workItem from="1652073016172" duration="12014000" />
+      <workItem from="1652101382132" duration="160000" />
+      <workItem from="1652137028198" duration="488000" />
+      <workItem from="1652141772991" duration="1291000" />
+      <workItem from="1652145797742" duration="5617000" />
     </task>
     <servers />
   </component>

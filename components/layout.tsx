@@ -2,18 +2,21 @@ import Link from 'next/link';
 import {useRouter} from 'next/router';
 import React from 'react';
 import {cls} from '@libs/client/utils';
+import Head from 'next/head';
 
 interface LayoutProps {
   title?: string;
   canGoBack?: boolean;
   hasTabBar?: boolean;
   children: React.ReactNode;
+  seoTitle?: string;
 }
 
 export default function Layout({
                                  title,
                                  canGoBack,
                                  hasTabBar,
+                                 seoTitle,
                                  children,
                                }: LayoutProps) {
   const route = useRouter();
@@ -23,6 +26,9 @@ export default function Layout({
 
   return (
     <div>
+      <Head>
+        <title>{seoTitle || 'Carrot Market'} </title>
+      </Head>
       <div
         className={cls(
           !canGoBack ? 'justify-center' : '',
@@ -48,7 +54,7 @@ export default function Layout({
           </button>
         )}
         {title &&
-        <div className={"w-full text-center"}>
+        <div className={'w-full text-center'}>
           <span>{title}</span>
         </div>}
       </div>

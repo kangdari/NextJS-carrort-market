@@ -1,11 +1,13 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
+import Image from 'next/Image';
 import Layout from '@components/layout';
 import ListItem from '@components/ListItem';
 import useUser from '@libs/client/useUser';
 import Head from 'next/head';
 import Link from 'next/link';
 import useSWR from 'swr';
-import { Product } from '@prisma/client';
+import {Product} from '@prisma/client';
+import screenShot from '../public/screenShot.png';
 
 interface ProductWithCount extends Product {
   _count: {
@@ -19,8 +21,8 @@ interface ProductResponse {
 }
 
 const Home: NextPage = () => {
-  const { user, isLoading } = useUser();
-  const { data } = useSWR<ProductResponse>('/api/products');
+  const {user, isLoading} = useUser();
+  const {data} = useSWR<ProductResponse>('/api/products');
 
   return (
     <Layout title='홈' hasTabBar>
@@ -42,7 +44,8 @@ const Home: NextPage = () => {
         ))}
 
         <Link href={`/products/upload`}>
-          <button className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
+          <button
+            className='fixed bg-orange-400 hover:bg-orange-500 transition-colors bottom-24 right-5  rounded-full p-4 shadow-xl text-white'>
             <svg
               className='h-6 w-6'
               xmlns='http://www.w3.org/2000/svg'
@@ -61,6 +64,7 @@ const Home: NextPage = () => {
           </button>
         </Link>
       </div>
+      <Image src={screenShot} placeholder="blur" />
     </Layout>
   );
 };

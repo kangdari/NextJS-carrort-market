@@ -46,6 +46,7 @@ const LiveDetail: NextPage = () => {
     reset();
     // 백 api를 호출하기 전에 캐시 데이터를 업데이트
     // ui만 먼저 업데이트하여 채팅 메시지가 보내진 것처러 보이게 함
+    //@ts-ignore
     mutate(prev => prev && ({
       ...prev, stream: {
         ...prev.stream,
@@ -81,7 +82,7 @@ const LiveDetail: NextPage = () => {
             <Message
               key={message.id}
               message={message.message}
-              reversed={user.id === message?.user?.id}
+              reversed={user?.id === message?.user?.id}
             />
           )}
         </div>

@@ -1,10 +1,31 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Suspense} from 'react';
 import {useForm} from 'react-hook-form';
 import CustomButton from '@components/Button/CustomButton';
 import Input from '@components/input';
 import useMutation from '@libs/client/useMutation';
 import {cls} from '@libs/client/utils';
 import {useRouter} from 'next/router';
+
+import dynamic from 'next/dynamic';
+
+// const Bs = dynamic(() => import('@components/Bs'), {ssr: false});
+
+// dynamic => 앱 최적화 단계에서 적용하는게 좋다
+
+// 파일 용량이 큰 컴포넌트를 로드하는 방법
+// 1. react 18의 Suspense 사용
+// 2. lazy-loading 적용
+// const Bs = dynamic(
+//   () =>
+//     new Promise((resolve) =>
+//       setTimeout(() => resolve(import('@components/bs')), 5000)
+//     ),
+//   {
+//     ssr: false,
+//     suspense: true,  // 1
+//     // loading: () => <span>loading</span>번 // 2번
+//   }
+// );
 
 interface EnterForm {
   email?: string;
@@ -129,15 +150,22 @@ export default function Enter() {
             )}
 
             {method === 'phone' && (
-              <Input
-                register={register('phone', {
-                  // required: true,
-                })}
-                name='phone'
-                type='phone'
-                label='Phone number'
-                required
-              />
+              <>
+                {/*<Suspense fallback={<h2>loading...</h2>}>*/}
+                {/*  <Bs/>*/}
+                {/*</Suspense>*/}
+
+                <Input
+                  register={register('phone', {
+                    // required: true,
+                  })}
+                  name='phone'
+                  type='phone'
+                  label='Phone number'
+                  required
+                />
+              </>
+
             )}
 
             <CustomButton

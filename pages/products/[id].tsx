@@ -9,6 +9,7 @@ import useSWR, {useSWRConfig} from 'swr';
 import {Product, User} from '@prisma/client';
 import useMutation from '@libs/client/useMutation';
 import useUser from '@libs/client/useUser';
+import Image from 'next/Image';
 
 interface ProductWithUser extends Product {
   user: User;
@@ -61,17 +62,27 @@ const ItemDetail: NextPage = () => {
   };
 
   return (
-    <Layout canGoBack>
-      <div className='px-4 py-10'>
+    <Layout canGoBack seoTitle="Product Detail">
+      <div className='px-4 py-4'>
         <div className='mb-8'>
           {/* todo change to img */}
-          <img
-            src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.image}/public`}
-            className='h-96 bg-slate-400'
-          />
+          <div className="relative pb-80">
+            <Image
+              layout="fill"
+              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.image}/public`}
+              className='bg-slate-400 object-cover'
+            />
+            <h1 className="absolute w-full text-center text-red-500">hello</h1>
+          </div>
           <div className='flex cursor-pointer py-3 border-t border-b items-center space-x-3'>
-            <img
-              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.user?.avatar}/avatar`}
+            {/*<img*/}
+            {/*  src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${data?.product?.user?.avatar}/avatar`}*/}
+            {/*  className='w-12 h-12 rounded-full'*/}
+            {/*/>*/}
+            <Image
+              width={48}
+              height={48}
+              src={`https://imagedelivery.net/TQjToaViyjFv2GIO-4tZ_A/${user?.avatar}/avatar`}
               className='w-12 h-12 rounded-full'
             />
             <div>
