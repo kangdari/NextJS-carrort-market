@@ -5,9 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2f8a53f-d8ff-4be6-9057-bd024398631b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/pages/coins.server.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/api/products/[id]/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/pages/api/products/[id]/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/products/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/products/[id].tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/next.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/next.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/_document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/profile/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/profile/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,6 +119,9 @@
       <workItem from="1652141772991" duration="1291000" />
       <workItem from="1652145797742" duration="15230000" />
       <workItem from="1652175047604" duration="4395000" />
+      <workItem from="1652189985309" duration="5000" />
+      <workItem from="1652236881715" duration="4126000" />
+      <workItem from="1652247519478" duration="1173000" />
     </task>
     <servers />
   </component>
@@ -127,6 +134,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/pages/profile/index.tsx</url>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/pages/products/[id].tsx</url>
+          <line>205</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

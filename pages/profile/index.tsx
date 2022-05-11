@@ -1,5 +1,6 @@
 import {assert} from 'console';
 import type {NextPage, NextPageContext} from 'next';
+import {Suspense} from 'react';
 import ProfileButton from '@components/Button/ProfileButton';
 import Layout from '@components/layout';
 import assets from '../../assets/icon';
@@ -90,9 +91,9 @@ const Profile: NextPage = () => {
   return (
     <Layout hasTabBar title="나의 캐럿">
       <div className="px-4">
-        {/*<Suspense fallback="Loading Mini Profile">*/}
-        <MiniProfile/>
-        {/*</Suspense>*/}
+        <Suspense fallback="Loading Mini Profile">
+          <MiniProfile/>
+        </Suspense>
         <div className="mt-10 flex justify-around">
           <Link href="/profile/sold">
             <a className="flex flex-col items-center">
@@ -164,45 +165,60 @@ const Profile: NextPage = () => {
             </a>
           </Link>
         </div>
-        {/*<Suspense fallback="Loading reviews...">*/}
-        <Reviews/>
-        {/*</Suspense>*/}
+        <Suspense fallback="Loading reviews...">
+          <Reviews/>
+        </Suspense>
       </div>
     </Layout>
   );
 };
 
-const Page: NextPage<{ profile: User }> = ({profile}) => {
+const Page: NextPage = () => {
   return (
     <SWRConfig value={{
-      // fallback: 컴포넌트의 캐시 초기값 제공
-      // => 백그라운드에서 실행되므로 로딩 표시가 필요 없음
-      fallback: {
-        '/api/users/me': {
-          ok: true,
-          profile
-        }
-      }
+      // SWR을 사용한 컴포넌트에서 swr 요청이 끝날 때까지 기다린 다음 컴포넌트를 렌더링
+      // 요청 전까지 컴포넌트가 보이지 않으므로 좋은 방법이 아니다!!
+      // 그래서 swr을 사용하는 컴포넌트를 <Suspense>로 감싸자
+      suspense: true
     }}>
+      {/*<Suspense fallback={<span>loading..</span>}>*/}
       <Profile/>
+      {/*</Suspense>*/}
     </SWRConfig>
   );
 };
 
-export const getServerSideProps = withSsrSession(async function (
-  {req}: NextPageContext
-) {
+// const Page: NextPage<{ profile: User }> = ({profile}) => {
+//   return (
+//     <SWRConfig value={{
+//       // fallback: 컴포넌트의 캐시 초기값 제공
+//       // => 백그라운드에서 실행되므로 로딩 표시가 필요 없음
+//       fallback: {
+//         '/api/users/me': {
+//           ok: true,
+//           profile
+//         }
+//       }
+//     }}>
+//       <Profile/>
+//     </SWRConfig>
+//   );
+// };
 
-  const profile = await client.user.findUnique({
-    where: {id: req?.session.user?.id},
-  });
-
-  return {
-    props: {
-      profile: JSON.parse(JSON.stringify(profile)),
-    }
-  };
-});
+// export const getServerSideProps = withSsrSession(async function (
+//   {req}: NextPageContext
+// ) {
+//
+//   const profile = await client.user.findUnique({
+//     where: {id: req?.session.user?.id},
+//   });
+//
+//   return {
+//     props: {
+//       profile: JSON.parse(JSON.stringify(profile)),
+//     }
+//   };
+// });
 
 // export default Profile;
 export default Page;
